@@ -1,2 +1,2 @@
-# rabbitmq_study
+ # rabbitmq_study
 rabbitmq study demo 
