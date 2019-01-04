@@ -19,9 +19,11 @@ __author__ = 'Darr_en1'
 #            接收消息队列与headers转发器绑定时可以指定键值对(all、any)
 
 
-
+# Exchange中durable参数指定exchange是否持久化，exchange参数指定exchange名称，
+# type指定exchange类型。Exchange类型有direct，fanout和topic。
 channel.exchange_declare(exchange='Clogs',
                          exchange_type='fanout')
+
 # 不指定queue名字,rabbit会随机分配一个名字,
 # exclusive=True会在使用此queue的消费者断开后,自动将queue删除
 result = channel.queue_declare(exclusive=True)
@@ -29,6 +31,8 @@ result = channel.queue_declare(exclusive=True)
 #获取到当前生成的队列名称
 queue_name = result.method.queue
 
+# Bind是将exchange与queue进行关联，exchange参数和queue参数分别指定要
+# 进行bind的exchange和queue，routing_key为可选参数。
 channel.queue_bind(exchange='Clogs',
                    queue=queue_name)
 
